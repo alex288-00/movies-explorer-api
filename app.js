@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const { errors } = require('celebrate');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
 const { PORT, DB_URL, LIMIT } = require('./config');
@@ -29,6 +30,7 @@ app.use(helmet());
 app.use(rateLimit(LIMIT));
 app.use('/', router);
 app.use(errorLogger);
+app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT);

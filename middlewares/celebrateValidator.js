@@ -2,7 +2,7 @@ const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
 
 // Валидируем регистрацию перед отправкой на контроллер
-module.exports.registerValidate = celebrate({
+module.exports.registerValidator = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30)
       .messages({
@@ -89,5 +89,11 @@ module.exports.createMovieValidator = celebrate({
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
+  }),
+});
+
+module.exports.idValidator = celebrate({
+  params: Joi.object().keys({
+    movieId: Joi.string().hex().message('Невалидный id'),
   }),
 });

@@ -1,5 +1,7 @@
-const { PORT = 3000, NODE_ENV, JWT_SECRET } = process.env;
-const DB_URL = 'mongodb://localhost:27017/moviesdb';
+const {
+  PORT = 3000, NODE_ENV, JWT_SECRET, BD,
+} = process.env;
+const DB_URL = NODE_ENV === 'production' ? BD : 'mongodb://localhost:27017/moviesdb';
 const SECRET_JWT = NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key';
 
 // Конфигурация для express-rate-limit

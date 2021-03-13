@@ -4,9 +4,9 @@ const routerMovies = require('./movies');
 const NotFoundError = require('../errors/NotFoundError');
 const { createUser, login } = require('../controllers/users');
 const auth = require('../middlewares/auth');
-const { registerValidate, loginValidator } = require('../middlewares/celebrateValidator');
+const { loginValidator, registerValidator } = require('../middlewares/celebrateValidator');
 
-router.post('/signup', registerValidate, createUser);
+router.post('/signup', registerValidator, createUser);
 router.post('/signin', loginValidator, login);
 
 router.use('/users', auth, routerUsers);
